@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ECN119: Mathematical Methods for Economics - Refresher Material</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+          <style>
+          body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                        min-height: 100vh;
+                                        color: #333;
+          }
+        
+        .container {
+          background: rgba(255, 255, 255, 0.95);
+          border-radius: 20px;
+          padding: 40px;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+          backdrop-filter: blur(10px);
+        }
+        
+        .title-page {
+          text-align: center;
+          padding: 40px 0;
+          border-bottom: 3px solid #667eea;
+          margin-bottom: 40px;
+        }
+        
+        .title-page h1 {
+          color: #2c3e50;
+            font-size: 2.2em;
+          margin-bottom: 10px;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .title-page h2 {
+          color: #34495e;
+            font-size: 1.8em;
+          font-weight: 300;
+          margin-bottom: 30px;
+        }
+        
+        .author {
+          color: #7f8c8d;
+            font-size: 1.1em;
+          margin-bottom: 10px;
+        }
+        
+        .slide {
+          margin-bottom: 50px;
+          padding: 30px;
+          border-radius: 15px;
+          background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+                                      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                                      transition: transform 0.3s ease;
+                                      position: relative; 
+        }
+        
+        .slide:hover {
+          transform: translateY(-2px);
+        }
+        
+        .slide-number {
+          position: absolute;
+          top: 20px;
+          right: 25px;
+          font-size: 1em;
+          font-weight: bold;
+          color: #adb5bd;
+        }
+        
+        .slide h2 {
+          color: #2c3e50;
+            border-bottom: 2px solid #667eea;
+          padding-bottom: 10px;
+          margin-bottom: 25px;
+          font-size: 1.6em;
+        }
+        
+        .block {
+          background: linear-gradient(145deg, #ffffff, #f1f3f4);
+                                      border: 1px solid #e1e5e9;
+                                      border-radius: 12px;
+                                      padding: 20px;
+                                      margin: 20px 0;
+                                      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .block h3 {
+          color: #2980b9;
+            margin-top: 0;
+          margin-bottom: 15px;
+          font-size: 1.2em;
+          border-bottom: 1px solid #bdc3c7;
+          padding-bottom: 5px;
+        }
+        
+        .block-highlight {
+          background: linear-gradient(145deg, #e8f4fd, #d1ecf1);
+                                      border: 2px solid #3498db;
+                                      padding: 25px;
+                                      text-align: center;
+                                      font-weight: 500;
+                                      border-radius: 15px;
+                                      margin: 25px 0;
+                                      box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
+        }
+        
+        .math-display {
+          text-align: center;
+          margin: 20px 0;
+          padding: 15px;
+          background: #f8f9fa;
+            border-radius: 8px;
+          border-left: 4px solid #667eea;
+        }
+        
+        ul {
+          padding-left: 20px;
+        }
+        
+        li {
+          margin-bottom: 8px;
+        }
+        
+        .columns {
+          display: flex;
+          gap: 30px;
+          align-items: flex-start;
+          margin: 20px 0;
+        }
+        
+        .column-left {
+          flex: 0 0 40%;
+        }
+        
+        .column-right {
+          flex: 1;
+          text-align: center;
+        }
+        
+        .graph-container {
+          text-align: center;
+          margin: 20px 0;
+          padding: 10px;
+          background: #f8f9fa;
+            border-radius: 10px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .graph-container img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .graph-caption {
+          margin-top: 10px;
+          font-style: italic;
+          color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .important-note {
+          background: linear-gradient(145deg, #ffeaa7, #fdcb6e);
+                                      border: 2px solid #e17055;
+                                      border-radius: 10px;
+                                      padding: 20px;
+                                      margin: 20px 0;
+                                      text-align: center;
+                                      font-weight: bold;
+                                      color: #2d3436;
+        }
+        
+        .example-work {
+          background: #f8f9fa;
+            border: 1px solid #dee2e6;
+          border-radius: 8px;
+          padding: 15px;
+          margin: 15px 0;
+          font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+          .columns {
+            flex-direction: column;
+          }
+          
+          .column-left {
+            flex: none;
+          }
+          
+          body {
+            padding: 10px;
+          }
+          
+          .container {
+            padding: 20px;
+          }
+        }
+        </style>
+          </head>
+          <body>
+          <div class="container">
+          <div class="title-page">
+          <h1>ECN119: Mathematical Methods for Economics</h1>
+          <h2>Refresher Material</h2>
+          <div class="author">School of Economics<br>The University of Sheffield</div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">1 / 20</div>
+          <h2>A Review of Algebra</h2>
+          
+          <div class="block">
+          <h3>Outline</h3>
+          <ul>
+          <li>Powers/Indices</li>
+          <li>Logarithms</li>
+          <li>Solving Equations</li>
+          <li>Simultaneous Equations</li>
+          <li>Inequalities</li>
+          <li>Absolute Value</li>
+          <li>Lines and Graphs</li>
+          </ul>
+          </div>
+          
+          <div class="block">
+          <h3>Reading</h3>
+          <p>Renshaw Chapters 2, 3, 4, 11, and Sections 5.10-5.12</p>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">2 / 20</div>
+          <h2>Indices</h2>
+          
+          <div class="block">
+          <h3>Rules of Indices</h3>
+          <p>If \(n\) is a positive integer and \(a\) is a real number, then</p>
+          
+          <div class="math-display">
+          \begin{align}
+        a^m \times a^n &= a^{m+n} \\
+        \frac{a^m}{a^n} &= a^{m-n} \\
+        (a^m)^n &= a^{m \times n}
+        \end{align}
+        </div>
+          
+          <p>\(a^n\) also has a meaning when \(n\) is zero, or negative, or a fraction</p>
+          
+          <div class="math-display">
+          \begin{align}
+        a^0 &= 1 \quad (if \, a \neq 0) \\
+        a^{-n} &= \frac{1}{a^n} \\
+        a^{\frac{1}{n}} &= \sqrt[n]{a} \\
+        a^{\frac{m}{n}} &= (\sqrt[n]{a})^m = \sqrt[n]{a^m}
+        \end{align}
+        </div>
+          </div>
+          
+          <p>There are two other useful rules, which may seem obvious to you:</p>
+          <div class="math-display">
+          \begin{align}
+        a^n \times b^n &= (ab)^{n} \\
+        \frac{a^n}{b^n} &= \left(\frac{a}{b}\right)^{n}
+        \end{align}
+        </div>
+          
+          <div class="important-note">
+          <strong>Important Note</strong><br>
+          \((a+b)^n \neq a^n + b^n\)
+        </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">3 / 20</div>
+          <h2>Logarithms</h2>
+          
+          <p>To define a <em>logarithm</em> we first choose a particular <em>base</em>: take any positive integer, \(a\). Now take any positive number, \(x\).</p>
+          
+          <div class="block-highlight">
+          The logarithm of \(x\) to the base \(a\) is:<br>
+          the power of \(a\) that is equal to \(x\).<br>
+          If \(x = a^n\) then \(\log_a x = n\)
+        </div>
+          
+          <div class="block">
+          <h3>Rules of Logarithms</h3>
+          <p>The rules for logarithms are derived from the rules for indices</p>
+          
+          <div class="math-display">
+          \begin{align}
+        \log_a xy &= \log_a x + \log_a y \\
+        \log_a \frac{x}{y} &= \log_a x - \log_a y \\
+        \log_a x^b &= b \log_a x \\
+        \log_a a &= 1 \\
+        \log_a 1 &= 0
+        \end{align}
+        </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">4 / 20</div>
+          <h2>Solving Equations</h2>
+          
+          <div class="block">
+          <h3>Equations Involving Parameters</h3>
+          <p>Suppose \(x\) satisfies the equation: \(5(x - a) = 3x + 1\)</p>
+          <p>Here \(a\) is a parameter: a letter representing an unspecified number. The solution of the equation will depend on the value of \(a\).</p>
+          <p>Without knowing the value of \(a\), we can still solve the equation for \(x\), to find out exactly how \(x\) depends on \(a\):</p>
+          
+          <div class="example-work">
+          \begin{align}
+        5(x - a) &= 3x + 1 \\
+        x &=
+          \end{align}
+        </div>
+          </div>
+          
+          <div class="block">
+          <h3>Changing the Subject of a Formula</h3>
+          <p>\(V = \pi r^2 h\) is the formula for the volume of a cylinder with radius \(r\) and height \(h\) - so if you know \(r\) and \(h\), you can calculate \(V\). We could rearrange the formula to make \(r\) the subject:</p>
+          
+          <div class="example-work">
+          \begin{align}
+        V &= \pi r^2 h \\
+        r &=
+          \end{align}
+        </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">5 / 20</div>
+          <h2>Quadratic Equations</h2>
+          
+          <div class="block">
+          <h3>Quadratic Equations</h3>
+          <p>Consider the following quadratic equation</p>
+          <div class="math-display">
+          \[ax^2 + bx + c = 0\]
+        </div>
+          <p>where \(a\), \(b\), and \(c\) are numbers and \(a \neq 0\). The solutions (roots) are given by:</p>
+          
+          <div class="block-highlight">
+          The Quadratic Formula: \(x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}\)
+        </div>
+          
+          <p>The <em>discriminant</em> of this quadratic is \(D = b^2 - 4ac\). If \(D\) is positive, the quadratic has two roots; if \(D\) is zero, the quadratic has one root; if \(D\) is negative, the quadratic has no roots.</p>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">6 / 20</div>
+          <h2>Equations with Indices and Logarithms</h2>
+          
+          <div class="block">
+          <h3>Equations Involving Indices</h3>
+          <p>Consider the following equation</p>
+          <div class="math-display">
+          \[7^{2x+1} = 8\]
+        </div>
+          <p>To solve this equation we need to <em>take the logarithm of both sides</em>:</p>
+          
+          <div class="example-work">
+          \begin{align}
+        \log_{10}(7^{2x+1}) &= \log_{10} 8 \\
+        \end{align}
+        </div>
+          </div>
+          
+          <div class="block">
+          <h3>Equations Involving Logarithms</h3>
+          <p>To solve an equation involving logarithms, <em>consider the definition of a logarithm</em>.</p>
+          <p>For example, solve:</p>
+          
+          <div class="example-work">
+          \begin{align}
+        \log_5(3x-2) &= 2 \\
+        \end{align}
+        </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">7 / 20</div>
+          <h2>Simultaneous Equations</h2>
+          
+          <p>Suppose we have two equations and two variables</p>
+          <div class="math-display">
+          \begin{align}
+        x + y &= 20 \tag{S1} \\
+        3x - 2y &= -5 \tag{S2}
+        \end{align}
+        </div>
+          
+          <p>There are lots of pairs of numbers \(x\) and \(y\) that satisfy (S1) or (S2) independently, but just one pair of \(x\) and \(y\) that satisfy both equations simultaneously! To solve a pair of simultaneous equations one can use two methods.</p>
+          
+          <div class="block">
+          <h3>Method 1: Substitution</h3>
+          <p>Make one variable the subject of one of the equations (it does not matter which), and substitute it in the other equation.</p>
+          
+          <div class="example-work" style="min-height: 80px;">
+          </div>
+          </div>
+          
+          <div class="block">
+          <h3>Method 2: Elimination</h3>
+          <p>Rearrange the equations so that you can add or subtract them to eliminate one of the variables.</p>
+          
+          <div class="example-work" style="min-height: 80px;">
+          </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">8 / 20</div>
+          <h2>Inequalities</h2>
+          
+          <div class="block-highlight">
+          When manipulating inequalities you can add anything to both sides, or subtract anything, and you can multiply or divide both sides by a positive number.<br><br>
+          But if you multiply or divide both sides by a negative number you must reverse the inequality sign.
+        </div>
+          
+          <div class="block">
+          <h3>Quadratic Inequalities</h3>
+          <ol>
+          <li>Find the roots of the quadratic;</li>
+          <li>Determine the sign of the quadratic on either side of each root.</li>
+          </ol>
+          </div>
+          
+          <p>For example, solve the following inequality:</p>
+          <div class="example-work">
+          \begin{align}
+        x^2 - 8x + 12 &< 0 \\
+        \end{align}
+        </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">9 / 20</div>
+          <h2>Absolute Value</h2>
+          
+          <p>The absolute value, or <em>modulus</em>, of \(x\) is the positive number which has the same "magnitude" as \(x\). It is denoted by \(|x|\).</p>
+          
+          <div class="block-highlight">
+          \begin{align}
+        |x| &= x \quad \text{if } x \geq 0 \\
+        |x| &= -x \quad \text{if } x < 0
+        \end{align}
+        </div>
+          
+          <p>For example, if \(x = -6\), then \(|x| = 6\), and if \(y = 7\), then \(|y| = 7\).</p>
+          
+          <div class="block">
+          <h3>Solving Equations and Inequalities Involving Absolute Values</h3>
+          
+          <div class="columns">
+          <div class="column-left">
+          <div class="example-work" style="min-height: 200px; text-align: center; padding-top: 80px;">
+          \(|9-2x| = 11\)
+        </div>
+          </div>
+          <div class="column-right">
+          <div class="example-work" style="min-height: 200px; text-align: center; padding-top: 80px;">
+          \(|1-2y| > 2\)
+        </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">10 / 20</div>
+          <h2>Lines and Graphs</h2>
+          
+          <div class="block">
+          <h3>The Gradient of a Line</h3>
+          
+          <div class="columns">
+          <div class="column-left">
+          <p>When you move from A to B, the change in the \(x\)-coordinate is</p>
+          <div class="math-display">
+          \[\Delta x = 6 - 2 = 4\]
+        </div>
+          <p>and the change in the \(y\)-coordinate is</p>
+          <div class="math-display">
+          \[\Delta y = 4 - 1 = 3\]
+        </div>
+          <p>The gradient (or slope) of AB is \(\Delta y\) divided by \(\Delta x\):</p>
+          <div class="math-display">
+          \[Gradient = \frac{\Delta y}{\Delta x} = \frac{3}{4} = 0.75\]
+        </div>
+          </div>
+          <div class="column-right">
+          <div class="graph-container">
+          <img src="gradient.png" alt="Graph showing gradient calculation between points A(2,1) and B(6,4)" />
+          <div class="graph-caption">Graph showing points A(2,1) and B(6,4) with line connecting them</div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          <p>There is a general formula:</p>
+          <div class="block-highlight">
+          The gradient of the line joining \((x_1, y_1)\) and \((x_2, y_2)\) is:
+          \[\frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1}\]
+        </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">11 / 20</div>
+          <h2>Different Types of Gradients</h2>
+          
+          <div class="columns">
+          <div class="column-left">
+          <p>The gradient of line \(a\) is positive.</p>
+          <p>The gradient of \(b\) is negative.</p>
+          <p>The gradient of \(c\) is zero.</p>
+          <p>The gradient of \(d\) is infinite.</p>
+          </div>
+          <div class="column-right">
+          <div class="graph-container">
+          <img src="different_gradients.png" alt="Graph showing four lines with different gradients" />
+          <div class="graph-caption">Graph showing four lines with different gradients: a - positive slope, b - negative slope, c - horizontal line, d - vertical line</div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">12 / 20</div>
+          <h2>Straight Line Graphs</h2>
+          
+          <div class="block-highlight">
+          If an equation can be written in the form<br>
+          \(y = mx + c\)<br>
+          then the graph is a straight line, with gradient \(m\) and vertical intercept \(c\).<br>
+          We say "\(y\) is a linear function of \(x\)".
+        </div>
+          
+          <div class="graph-container">
+          <img src="straight_line_graph.png" alt="Graph showing a straight line y = mx + c with gradient m and y-intercept c" />
+          <div class="graph-caption">Graph showing a straight line y = mx + c with gradient m and y-intercept c labeled</div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">13 / 20</div>
+          <h2>The Equation of a Line</h2>
+          
+          <div class="block-highlight">
+          The equation of a line with gradient \(m\), passing through the point \((x_1, y_1)\) is<br>
+          \(y = m(x - x_1) + y_1\)
+        </div>
+          
+          <div class="block">
+          <h3>Example</h3>
+          <p><em>Find the equation of the line passing through (2,0) and (8,-1):</em></p>
+          
+          <div class="example-work" style="min-height: 140px;">
+          </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">14 / 20</div>
+          <h2>Quadratic Graphs</h2>
+          
+          <div class="block-highlight">
+          If we can write a relationship between \(x\) and \(y\) so that \(y\) is equal to a quadratic polynomial in \(x\):<br>
+          \(y = ax^2 + bx + c\)<br>
+          where \(a\), \(b\), and \(c\) are numbers, then we say<br>
+          "\(y\) is a quadratic function of \(x\)",<br>
+          and the graph is a parabola (a U-shape).
+        </div>
+          
+          <p>If \(a\) (the coefficient of \(x^2\)) is positive, the graph is a U-shape; if \(a\) is negative then it is an inverted U-shape; the vertical intercept is given by \(c\); and the graph is symmetric.</p>
+          
+          <div class="columns">
+          <div class="column-left">
+          <p>For example:</p>
+          <div class="math-display">
+          \[y = -x^2 - 4x\]
+        </div>
+          </div>
+          <div class="column-right">
+          <div class="graph-container">
+          <img src="quadratic.png" alt="Graph showing inverted parabola y = -x² - 4x" />
+          <div class="graph-caption">Graph showing inverted parabola y = -x² - 4x</div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">15 / 20</div>
+          <h2>Solving Equations using Graphs</h2>
+          
+          <div class="columns">
+          <div class="column-left">
+          <p>The equations:</p>
+          <div class="math-display">
+          \begin{align}
+        x + y &= 4 \\
+        y &= 3x
+        \end{align}
+        </div>
+          <p>could be solved algebraically. Alternatively, we could draw their graphs, and find the point where they intersect.</p>
+          </div>
+          <div class="column-right">
+          <div class="graph-container">
+          <img src="simult_equations.png" alt="Graph showing intersection of lines x + y = 4 and y = 3x" />
+          <div class="graph-caption">Graph showing intersection of lines x + y = 4 and y = 3x at point (1,3)</div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">16 / 20</div>
+          <h2>Representing Inequalities using Graphs</h2>
+          
+          <div class="columns">
+          <div class="column-left">
+          <p>If we draw the graph of the line</p>
+          <div class="math-display">
+          \[2y + x = 10\]
+        </div>
+          <p>all the points satisfying</p>
+          <div class="math-display">
+          \[2y + x < 10\]
+        </div>
+          <p>lie on one side of the line.</p>
+          </div>
+          <div class="column-right">
+          <div class="graph-container">
+          <img src="inequal.png" alt="Graph showing line 2y + x = 10 with inequality region" />
+          <div class="graph-caption">Graph showing line 2y + x = 10 with shaded region below representing 2y + x &lt; 10</div>
+          </div>
+          </div>
+          </div>
+          
+          <p style="text-align: center;">The dotted region shows the inequality \(2y + x < 10\).</p>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">17 / 20</div>
+          <h2>Using Graphs to Solve Quadratic Inequalities</h2>
+          
+          <div class="columns">
+          <div class="column-left">
+          <p>To solve the inequality</p>
+          <div class="math-display">
+          \[x^2 - 2x - 15 \leq 0\]
+        </div>
+          <p>sketch the graph of the quadratic polynomial</p>
+          <div class="math-display">
+          \[y = x^2 - 2x - 15\]
+        </div>
+          </div>
+          <div class="column-right">
+          <div class="graph-container">
+          <img src="quadratic_ineq.png" alt="Graph showing parabola y = x² - 2x - 15 for solving inequality" />
+          <div class="graph-caption">Graph showing parabola y = x² - 2x - 15 with roots at x = -3 and x = 5, showing where y ≤ 0</div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          <div class="slide">
+          <div class="slide-number">18 / 20</div>
+          <h2>Economic Application: Budget Constraint</h2>
+          
+          <div class="block">
+          <h3>The Budget Constraint</h3>
+          <p>Suppose that the typical student has a given weekly budget of £50, and that there are only two goods, bread and cheese, with current prices £2 per loaf of bread and £5 per block of cheese. If the student buys \(x\) loaves of bread and \(y\) blocks of cheese, the amount spent is \(2x + 5y\).</p>
+          <p>Since the maximum amount the student has to spend is £50, her budget constraint is:</p>
+          <div class="math-display">
+          \[2x + 5y \leq 50\]
+        </div>
+          </div>
+          
+          <div class="columns">
+          <div class="column-left">
+          <p>The student's budget set (all the affordable combinations of loaves of bread and blocks of cheese) are given by the dotted area of the diagram.</p>
+                </div>
+                <div class="column-right">
+                    <div class="graph-container">
+                        <img src="BC_1.png" alt="Budget constraint graph showing student's affordable combinations" />
+                        <div class="graph-caption">Graph showing budget constraint 2x + 5y ≤ 50 with feasible region shaded</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-number">19 / 20</div>
+            <h2>Economic Application: Budget Constraints - General Case</h2>
+            
+            <div class="block">
+                <h3>The General Case</h3>
+                <p>Suppose that a consumer has a choice of two goods, good 1 and good 2. The price of good 1 is \(p_1\) and the price of good 2 is \(p_2\). If she buys \(x_1\) units of good 1, and \(x_2\) units of good 2, the total amount spent is \(p_1x_1 + p_2x_2\).</p>
+                <p>If the maximum amount she has to spend is her income \(I\), her budget constraint is:</p>
+                <div class="math-display">
+                    \[p_1x_1 + p_2x_2 \leq I\]
+                </div>
+                <p>If the consumer spends all her income on good 1 and good 2, the budget constraint <em>holds with equality</em> and is said to be <em>binding</em>.</p>
+            </div>
+            
+            <div class="columns">
+                <div class="column-left">
+                    <p>To draw the budget line, use:</p>
+                    <div class="math-display">
+                        \[p_1x_1 + p_2x_2 = I\]
+                    </div>
+                    <p>The gradient of the budget line is:</p>
+                    <div class="math-display">
+                        \[-\frac{p_1}{p_2}\]
+                    </div>
+                </div>
+                <div class="column-right">
+                    <div class="graph-container medium">
+                        <img src="BC_2.png" alt="General budget constraint graph" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                        <div class="graph-placeholder" style="display:none;">
+                            <strong>Image not found: BC_2.png</strong><br>
+                            Graph showing general budget line p₁x₁ + p₂x₂ = I with intercepts I/p₁ and I/p₂, and slope -p₁/p₂
+                        </div>
+                        <div class="graph-caption">Graph showing general budget line p₁x₁ + p₂x₂ = I with intercepts I/p₁ and I/p₂, and slope -p₁/p₂</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-number">20 / 20</div>
+            <h2>Summary</h2>
+            
+            <div class="block">
+                <h3>Key Topics Covered</h3>
+                <p>This refresher material has covered essential mathematical foundations for economics:</p>
+                <ul>
+                    <li><strong>Indices and Logarithms:</strong> Rules for manipulation and solving exponential equations</li>
+                    <li><strong>Equation Solving:</strong> Linear, quadratic, and parameter-based equations</li>
+                    <li><strong>Simultaneous Equations:</strong> Substitution and elimination methods</li>
+                    <li><strong>Inequalities:</strong> Including quadratic inequalities and absolute values</li>
+                    <li><strong>Graphs and Lines:</strong> Gradients, intercepts, and geometric interpretation</li>
+                    <li><strong>Economic Applications:</strong> Budget constraints as practical examples</li>
+                </ul>
+            </div>
+            
+            <div class="block-highlight">
+                These mathematical tools form the foundation for more advanced topics in economic analysis, including optimization, calculus applications, and mathematical modeling of economic phenomena.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
